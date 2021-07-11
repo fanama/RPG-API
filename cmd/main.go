@@ -18,6 +18,8 @@ func main() {
 
 	app := fiber.New()
 
+	app.Static("/", "./public")
+
 	app.Get("/heroes", router.GetHeroes)
 
 	app.Post("/hero", router.NewHero)

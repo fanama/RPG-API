@@ -1,0 +1,4 @@
+node_modules
+databese/database.db
+public
+.cache

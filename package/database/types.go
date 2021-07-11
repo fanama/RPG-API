@@ -14,6 +14,7 @@ type Hero struct {
 	Inteligence  int    `gorm:"default:10"`
 	Sagesse      int    `gorm:"default:10"`
 	Charisme     int    `gorm:"default:10"`
+	Owner        string `gorm:"default:master"`
 }
 
 type Configuration struct {
