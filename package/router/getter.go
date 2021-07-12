@@ -12,3 +12,13 @@ func GetHeroes(c *fiber.Ctx) error {
 	return c.JSON(res)
 
 }
+
+func GetHeroe(c *fiber.Ctx) error {
+
+	username := c.Params("name")
+
+	res := database.GetHero(username)
+
+	return c.JSON(res)
+
+}

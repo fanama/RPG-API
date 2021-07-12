@@ -18,6 +18,8 @@ func init() {
 
 	var mob Hero
 
+	mob.Name = "mob"
+
 	DB.FirstOrCreate(&mob)
 
 }

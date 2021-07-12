@@ -2,7 +2,7 @@ package database
 
 type Hero struct {
 	ID           int    `gorm:"primaryKey"`
-	Name         string `gorm:"default:mob"`
+	Name         string `gorm:"primaryKey"`
 	Race         string `gorm:"default:unknown"`
 	Lifepoint    int    `gorm:"default:10"`
 	Armor        int    `gorm:"default:10"`

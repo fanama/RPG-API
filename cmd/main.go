@@ -21,6 +21,7 @@ func main() {
 	app.Static("/", "./public")
 
 	app.Get("/heroes", router.GetHeroes)
+	app.Get("/hero/:name", router.GetHeroe)
 
 	app.Post("/hero", router.NewHero)
 
