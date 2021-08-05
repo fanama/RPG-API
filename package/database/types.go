@@ -1,7 +1,7 @@
 package database
 
 type Hero struct {
-	ID           int    `gorm:"primaryKey"`
+	ID           int    `gorm:"primaryKey;autoIncrement:true;"`
 	Name         string `gorm:"primaryKey"`
 	Race         string `gorm:"default:unknown"`
 	Lifepoint    int    `gorm:"default:10"`

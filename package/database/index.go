@@ -16,10 +16,10 @@ func init() {
 
 	DB.AutoMigrate(&Hero{})
 
-	var mob Hero
+	// var mob Hero
 
-	mob.Name = "mob"
+	// mob.Name = "mob"
 
-	DB.FirstOrCreate(&mob)
+	// DB.FirstOrCreate(&mob)
 
 }

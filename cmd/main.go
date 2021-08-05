@@ -24,6 +24,7 @@ func main() {
 	app.Get("/hero/:name", router.GetHeroe)
 
 	app.Post("/hero", router.NewHero)
+	app.Post("/deleteHero", router.DeleteHero)
 
 	app.Listen(":3001")
 
