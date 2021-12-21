@@ -1,0 +1,54 @@
+$background_color :rgba(0,0,0,0.1);
+$background_hover :rgba(0,0,0,0.4);
+$color : white;
+
+.navbar {
+    width: 100%;
+    background-color:rgba(0,0,0,0.1);
+
+    // beautiful h1
+    h1 {
+        color: $color;
+        font-size: 3em;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 300;
+    }
+
+    
+
+    .line {
+        // put element on the same line
+        display: inline-block;
+        width: 100%;
+
+        // center elements
+        display: flex;
+        gap: 1em;
+        justify-content: center;
+
+        // make cool button
+        button {
+            background-color: $background_color;
+            border: none;
+            color: $color;
+            padding: 0.5em;
+            text-align: center;
+            display: inline-block;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.5s;
+            margin: 0.5em;
+            width: 10em;
+            height: 2em;
+            font-weight: bold;
+            &:hover {
+                background-color: $background_hover;
+            }
+        }
+    }
+
+}

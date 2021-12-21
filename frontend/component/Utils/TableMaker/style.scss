@@ -1,0 +1,28 @@
+$border-color: #e5e5e5;
+$color : black;
+
+.tableMaker {
+    table {
+        border-collapse: collapse;
+        border: 1px solid $border-color;
+        width: 100%;
+        th,tr{
+            border: 1px solid $border-color;
+            padding: 5px;
+            // allign text in center
+            text-align: center;
+        }
+        th{
+            background-color: $border-color;
+        }
+        tr{
+            background-color: white;
+        }
+    }
+
+    // center self
+    margin: 1em 25% 1em 25%;
+
+    
+}
+

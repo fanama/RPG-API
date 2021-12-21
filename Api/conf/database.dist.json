@@ -1,0 +1,7 @@
+{
+    "USER_DB":"root",
+    "PASSWORD_DB":"example",
+    "PORT_DB":3302,
+    "DB_NAME":"test03",
+    "HOST_DB":"192.168.56.1"
+}
