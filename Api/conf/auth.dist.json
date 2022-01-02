@@ -1,8 +1,0 @@
-{
-    "JWT_SECRET": "secret",
-    "JWT_VALID_TIME": 24,
-    "LOGIN_API":"http://localhost:3002/login",
-    "Username":"fana",
-    "Passxord":"password"
-}
-​​

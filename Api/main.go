@@ -1,34 +1,17 @@
 package main
 
 import (
-	"log"
+	"fmt"
 
-	"github.com/fanama/next-react/Api/packages/router"
-	"github.com/fanama/next-react/Api/packages/rpg"
-	"github.com/fanama/next-react/Api/packages/variablesCors"
-	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/fanama/RPG/Api/menu"
+	"github.com/fanama/RPG/Api/server"
 )
 
 func main() {
-	config, err := variablesCors.InitConfig()
+	ctx := menu.Start()
 
-	if err != nil {
-		log.Fatal(err)
+	fmt.Println("Starting server...")
 
-	}
+	server.Run(ctx)
 
-	app := fiber.New()
-
-	app.Use(cors.New(cors.Config{
-		AllowOrigins: config.Origin,
-		AllowMethods: config.Methods,
-	}))
-
-	app.Post("/auth", router.Login)
-
-	app.Post("/insert", rpg.Insert)
-	app.Get("/get", rpg.Get)
-
-	app.Listen(":" + config.Port)
 }
