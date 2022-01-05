@@ -7,6 +7,7 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 func (m *Manager) InitMysqlDB() (err error) {
@@ -28,7 +29,7 @@ func (m *Manager) InitMysqlDB() (err error) {
 func (m *Manager) InitSqliteDB(name string) (err error) {
 
 	m.db, err = gorm.Open(sqlite.Open(name+".db"), &gorm.Config{
-		// Logger: logger.Default.LogMode(logger.Silent),
+		Logger: logger.Default.LogMode(logger.Silent),
 	})
 
 	return err

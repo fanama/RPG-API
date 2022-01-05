@@ -1,7 +1,7 @@
 package server
 
 import (
-	"fmt"
+	"log"
 
 	"github.com/fanama/RPG/Api/app"
 	"github.com/fanama/RPG/Api/server/routes"
@@ -12,11 +12,12 @@ func Run(ctx *app.Context) {
 	app := Routes(ctx)
 
 	//ask user for a port
-	var port string
-	fmt.Print("Enter port: ")
-	fmt.Scan(&port)
+	conf, err := ReadConfig("auth")
+	if err != nil {
+		log.Default()
+	}
 
-	app.Listen(":" + port)
+	app.Listen(":" + conf.Port)
 }
 
 func Routes(ctx *app.Context) *fiber.App {
@@ -31,6 +32,9 @@ func Routes(ctx *app.Context) *fiber.App {
 
 	r.Post("/hero", routeslist.CreateHero)
 	r.Get("/heroes", routeslist.GetHeroes)
+	r.Get("/hero/:name", routeslist.GetHero)
+	r.Put("/hero/:name", routeslist.UpdateHero)
+	r.Delete("/hero/:name", routeslist.DeleteHero)
 
 	return r
 }
