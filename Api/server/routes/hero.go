@@ -43,6 +43,7 @@ func (r *Router) GetHero(c *fiber.Ctx) error {
 
 func (r *Router) UpdateHero(c *fiber.Ctx) error {
 	var hero domain.Hero
+	name := c.Params("name")
 
 	if err := c.BodyParser(&hero); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
@@ -50,7 +51,7 @@ func (r *Router) UpdateHero(c *fiber.Ctx) error {
 		})
 	}
 
-	err := r.ctx.UpdateHero(&hero)
+	err := r.ctx.UpdateHero(&hero, name)
 	if err != nil {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
 			"error": err.Error(),

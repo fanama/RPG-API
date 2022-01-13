@@ -1,8 +1,6 @@
 package database
 
 import (
-	"fmt"
-
 	"github.com/fanama/RPG/Api/domain"
 )
 
@@ -30,11 +28,10 @@ func (m Manager) GetHeroes() ([]domain.Hero, error) {
 	return heroes, err
 }
 
-func (m Manager) UpdateHero(hero *domain.Hero) error {
-	return m.db.Save(&hero).Error
+func (m Manager) UpdateHero(hero *domain.Hero, name string) error {
+	return m.db.Model(&domain.Hero{}).Where("name=?", name).Updates(&hero).Error
 }
 
 func (m Manager) DeleteHero(name string) error {
-	fmt.Println("delete hero : ", name)
 	return m.db.Where("name=?", name).Delete(&domain.Hero{}).Error
 }

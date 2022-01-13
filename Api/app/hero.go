@@ -28,8 +28,8 @@ func (c *Context) CreateHero(hero *domain.Hero) error {
 	return c.Database.CreateHero(hero)
 }
 
-func (c *Context) UpdateHero(hero *domain.Hero) error {
-	return c.Database.UpdateHero(hero)
+func (c *Context) UpdateHero(hero *domain.Hero, name string) error {
+	return c.Database.UpdateHero(hero, name)
 }
 
 func (c *Context) DeleteHero(name string) error {
