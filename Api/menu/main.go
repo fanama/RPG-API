@@ -36,7 +36,6 @@ func Start() *app.Context {
 	choices := map[int]string{
 		1: "Mysql",
 		2: "SQLite",
-		// 3: "Postgres",
 		0: "Exit",
 	}
 
@@ -46,9 +45,17 @@ func Start() *app.Context {
 		fmt.Printf("%d. %s\n", key, value)
 	}
 
-	fmt.Printf("\nEnter your choice: ")
 	var choice int
-	fmt.Scanf("%d\n", &choice)
+	if os.Getenv("ENV") == "docker" {
+		fmt.Println("==========================")
+		fmt.Println("env: ", os.Getenv("ENV"))
+		fmt.Println("==========================")
+		choice = 0
+	} else {
+		fmt.Printf("\nEnter your choice: ")
+		fmt.Scanf("%d\n", &choice)
+
+	}
 
 	switch choice {
 	case 1:
@@ -70,15 +77,24 @@ func Start() *app.Context {
 		return &ctx
 
 	case 0:
-		fmt.Println("Exiting...")
-		fmt.Println("environnement : ", os.Getenv("ENV"))
-		// os.Exit(0)
-		err = ctx.InitMysql()
-		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
+
+		if os.Getenv("ENV") == "docker" {
+			// os.Exit(0)
+			err = ctx.InitMysql()
+			if err != nil {
+				fmt.Println(err)
+				os.Exit(1)
+			}
+
+			fmt.Println("==========================")
+			fmt.Println("== HELLO DOCKER==")
+			fmt.Println("==========================")
+
+			return &ctx
+
 		}
-		return &ctx
+		os.Exit(0)
+
 	default:
 		fmt.Println("Invalid choice")
 	}

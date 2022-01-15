@@ -22,6 +22,16 @@ func CreateConfig(fileName string) (conf Configuration, err error) {
 		return conf, err
 	}
 
+	if os.Getenv("ENV") == "docker" {
+		conf.Host = "localhost"
+		conf.User = "root"
+		conf.Password = "root"
+		conf.Port = 3306
+		conf.DB = "test"
+
+		return conf, err
+	}
+
 	defer file.Close()
 	fmt.Print("Enter Host:(db)")
 	fmt.Scan(&conf.Host)

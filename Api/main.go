@@ -9,11 +9,14 @@ import (
 
 func main() {
 
-	fmt.Println("app is init....")
+	fmt.Println("==========================")
+	fmt.Println("|  Welcome to the RPG!!!!  |")
+	fmt.Println("==========================")
 
 	ctx := menu.Start()
 
-	fmt.Println("Starting server...")
+	fmt.Println("==========================")
+	fmt.Println("Starting server")
 
 	server.Run(ctx)
 

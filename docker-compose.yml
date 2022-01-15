@@ -7,9 +7,12 @@ services:
     container_name: api-rpg
     restart: always
     volumes:
-      - ./Api:/app
+      - "./Api:/app"
+    environment:
+      ENV: "docker"
     ports: 
       - 3001:3001
+      - 3000:3000
     depends_on:
       - db
       - cache
@@ -34,7 +37,7 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - ./init:/docker-entrypoint-initdb.d    
+      - "./init:/docker-entrypoint-initdb.d"    
     networks:
       - local
   adminer_container:
@@ -48,3 +51,4 @@ services:
 networks:
   local:
     driver: bridge
+

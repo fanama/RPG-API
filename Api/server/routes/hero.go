@@ -1,8 +1,6 @@
 package routes
 
 import (
-	"log"
-
 	"github.com/fanama/RPG/Api/domain"
 	"github.com/gofiber/fiber/v2"
 )
@@ -21,7 +19,6 @@ func (r *Router) CreateHero(c *fiber.Ctx) error {
 }
 
 func (r *Router) GetHeroes(c *fiber.Ctx) error {
-	log.Println("GetHeroes")
 	heroes, err := r.ctx.GetHeros()
 	if err != nil {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{

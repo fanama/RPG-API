@@ -4,6 +4,7 @@ Api/conf/database.json
 Api/*.json
 Api/go.sum
 Api/tmp
+API/gin-bin
 
 *.db
 

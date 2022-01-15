@@ -16,7 +16,9 @@ RUN go version
 # Set the Current Working Directory inside the container
 WORKDIR /app
 
-RUN go install github.com/canthefason/go-watcher/cmd/watcher@latest
+# install hot reloading
+
+RUN go install github.com/codegangsta/gin@latest
 
 # Copy go mod and sum files
 COPY go.mod go.sum ./
@@ -27,4 +29,6 @@ RUN go mod download
 # Copy the source from the current directory to the Working Directory inside the container
 COPY . .
 
-ENTRYPOINT /go/bin/watcher
+# RUN nodemon --exec go run main.go
+
+CMD ["gin","run","main.go","--appPort","3001","--port","3000"]
