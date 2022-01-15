@@ -24,11 +24,11 @@ func (c *Context) InitSqlite() (err error) {
 
 	var conf string
 
-	fmt.Println("Enter the path of the sqlite database:")
+	fmt.Println("Enter the path of the sqlite database :(database)")
 	_, err = fmt.Scan(&conf)
 
 	if err != nil {
-		return err
+		conf = "database"
 	}
 	err = c.Database.InitSqliteDB(conf)
 	if err != nil {

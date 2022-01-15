@@ -3,6 +3,7 @@ Api/conf/cors.json
 Api/conf/database.json
 Api/*.json
 Api/go.sum
+Api/tmp
 
 *.db
 

@@ -8,6 +8,9 @@ import (
 )
 
 func main() {
+
+	fmt.Println("app is init....")
+
 	ctx := menu.Start()
 
 	fmt.Println("Starting server...")

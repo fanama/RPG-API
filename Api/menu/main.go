@@ -7,6 +7,28 @@ import (
 	"github.com/fanama/RPG/Api/app"
 )
 
+// run mysql context
+func Mysql() *app.Context {
+	ctx := app.Context{}
+	err := ctx.InitMysql()
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	return &ctx
+}
+
+// run sqlite context
+func Sqlite() *app.Context {
+	ctx := app.Context{}
+	err := ctx.InitSqlite()
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	return &ctx
+}
+
 func Start() *app.Context {
 	var err error
 	ctx := app.Context{}
@@ -49,7 +71,14 @@ func Start() *app.Context {
 
 	case 0:
 		fmt.Println("Exiting...")
-		os.Exit(0)
+		fmt.Println("environnement : ", os.Getenv("ENV"))
+		// os.Exit(0)
+		err = ctx.InitMysql()
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+		return &ctx
 	default:
 		fmt.Println("Invalid choice")
 	}
