@@ -29,7 +29,7 @@ func (m Manager) GetHeroes() ([]domain.Hero, error) {
 }
 
 func (m Manager) UpdateHero(hero *domain.Hero, name string) error {
-	return m.db.Model(&domain.Hero{}).Where("name=?", name).Updates(&hero).Error
+	return m.db.Model(&domain.Hero{}).Where("name=?", name).Updates(*hero).Error
 }
 
 func (m Manager) DeleteHero(name string) error {
