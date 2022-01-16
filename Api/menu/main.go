@@ -33,18 +33,19 @@ func Start() *app.Context {
 	var err error
 	ctx := app.Context{}
 
-	choices := map[int]string{
-		1: "Mysql",
-		2: "SQLite",
-		0: "Exit",
+	if os.Getenv("ENV") != "docker" {
+		choices := map[int]string{
+			1: "Mysql",
+			2: "SQLite",
+			0: "Exit",
+		}
+
+		// Display menu
+
+		for key, value := range choices {
+			fmt.Printf("%d. %s\n", key, value)
+		}
 	}
-
-	// Display menu
-
-	for key, value := range choices {
-		fmt.Printf("%d. %s\n", key, value)
-	}
-
 	var choice int
 	if os.Getenv("ENV") == "docker" {
 		fmt.Println("==========================")
