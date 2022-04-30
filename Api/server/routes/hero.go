@@ -14,7 +14,12 @@ func (r *Router) CreateHero(c *fiber.Ctx) error {
 		})
 	}
 
-	r.ctx.CreateHero(&hero)
+	err := r.ctx.CreateHero(&hero)
+
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(err)
+	}
+
 	return c.Status(201).JSON(hero)
 }
 
@@ -58,7 +63,7 @@ func (r *Router) UpdateHero(c *fiber.Ctx) error {
 		})
 	}
 
-	return c.JSON(hero)
+	return c.JSON(err)
 }
 
 func (r *Router) DeleteHero(c *fiber.Ctx) error {

@@ -1,6 +1,8 @@
 package database
 
 import (
+	"fmt"
+
 	"github.com/fanama/RPG/Api/domain"
 )
 
@@ -12,6 +14,17 @@ func (m Manager) InitHero() error {
 }
 
 func (m Manager) CreateHero(hero *domain.Hero) error {
+	var heroToFind domain.Hero
+	m.db.Where("name=?", hero.Name).First(&heroToFind)
+
+	// 	if err != nil {
+	// 		return err
+	// 	}
+
+	if heroToFind.Name != "" {
+		return fmt.Errorf("%v Aldready exist", hero.Name)
+	}
+
 	return m.db.Create(&hero).Error
 
 }
@@ -29,7 +42,7 @@ func (m Manager) GetHeroes() ([]domain.Hero, error) {
 }
 
 func (m Manager) UpdateHero(hero *domain.Hero, name string) error {
-	return m.db.Model(&domain.Hero{}).Where("name=?", name).Updates(*hero).Error
+	return m.db.Model(&domain.Hero{}).Where("name=?", name).Updates(&hero).Error
 }
 
 func (m Manager) DeleteHero(name string) error {

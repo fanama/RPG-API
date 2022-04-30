@@ -7,27 +7,27 @@ import (
 	"github.com/fanama/RPG/Api/app"
 )
 
-// run mysql context
-func Mysql() *app.Context {
-	ctx := app.Context{}
-	err := ctx.InitMysql()
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-	return &ctx
-}
+// // run mysql context
+// func Mysql() *app.Context {
+// 	ctx := app.Context{}
+// 	err := ctx.InitMysql()
+// 	if err != nil {
+// 		fmt.Println(err)
+// 		os.Exit(1)
+// 	}
+// 	return &ctx
+// }
 
-// run sqlite context
-func Sqlite() *app.Context {
-	ctx := app.Context{}
-	err := ctx.InitSqlite()
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-	return &ctx
-}
+// // run sqlite context
+// func Sqlite() *app.Context {
+// 	ctx := app.Context{}
+// 	err := ctx.InitSqlite()
+// 	if err != nil {
+// 		fmt.Println(err)
+// 		os.Exit(1)
+// 	}
+// 	return &ctx
+// }
 
 func Start() *app.Context {
 	var err error

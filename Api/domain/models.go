@@ -4,7 +4,7 @@ import "gorm.io/gorm"
 
 type Hero struct {
 	ID           int    `gorm:"primaryKey;autoIncrement:true;" json:"id"`
-	Name         string `gorm:"primaryKey" json:"name"`
+	Name         string `gorm:"default:blob;unique" json:"name"`
 	Race         string `gorm:"default:human" json:"race"`
 	Lifepoint    int    `gorm:"default:10" json:"lifepoint"`
 	Armor        int    `gorm:"default:10" json:"armor"`

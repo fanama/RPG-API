@@ -1,0 +1,18 @@
+.Card {
+    display: grid;
+	grid-template-columns: 1fr;
+	column-gap: 1em;
+	background-color: gray;
+	text-align: center;
+	border-radius: 1em;
+
+    .headder ,.stat {
+		padding: 1em;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+		h3{
+			grid-column: 1/3;
+		}
+
+	}
+}
