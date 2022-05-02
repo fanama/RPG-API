@@ -12,7 +12,7 @@ export function Card({ hero }: Props) {
         <h3>Name : {hero.name}</h3>
         <label>PV :</label>{" "}
         <label>
-          <input width="50%" />/{hero.lifepoint}
+          <input defaultValue={hero.lifepoint} />/{hero.lifepoint}
         </label>
         <label>Race :</label> <label>{hero.race}</label>
       </div>
@@ -33,7 +33,7 @@ export function Card({ hero }: Props) {
         <label>{hero.magie}</label>
         <label>contrôle :</label>
         <label>
-          <input /> /{hero.controle}
+          <input defaultValue={hero.controle} /> /{hero.controle}
         </label>
         <label>sagesse : </label>
         <label>{hero.sagesse}</label>

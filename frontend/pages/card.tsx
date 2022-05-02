@@ -1,7 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { Board } from "../components/Board";
+import { Card } from "../components/Card";
+import { getHero } from "../infra/hero";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
@@ -14,7 +15,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <Board />
+        <Card hero={getHero("goku")} />
       </main>
 
       <footer className={styles.footer}>
