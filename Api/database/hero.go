@@ -8,19 +8,13 @@ import (
 
 func (m Manager) InitHero() error {
 
-	err := m.db.AutoMigrate(&domain.Hero{})
+	return m.db.AutoMigrate(&domain.Hero{})
 
-	return err
 }
 
 func (m Manager) CreateHero(hero *domain.Hero) error {
 	var heroToFind domain.Hero
 	m.db.Where("name=?", hero.Name).First(&heroToFind)
-
-	// 	if err != nil {
-	// 		return err
-	// 	}
-
 	if heroToFind.Name != "" {
 		return fmt.Errorf("%v Aldready exist", hero.Name)
 	}

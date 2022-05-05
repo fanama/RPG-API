@@ -6,6 +6,7 @@ Api/go.sum
 Api/tmp
 API/gin-bin
 
+.env
 *.db
 
 frontend/node_modules

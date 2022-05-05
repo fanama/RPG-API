@@ -25,7 +25,7 @@ func (c *Context) InitSqlite() (err error) {
 	var conf string
 
 	fmt.Println("Enter the path of the sqlite database :(database)")
-	_, err = fmt.Scan(&conf)
+	_, err = fmt.Scanln(&conf)
 
 	if err != nil {
 		conf = "database"

@@ -1,7 +1,7 @@
 package server
 
 import (
-	"log"
+	"os"
 
 	"github.com/fanama/RPG/Api/app"
 	"github.com/fanama/RPG/Api/server/routes"
@@ -11,13 +11,7 @@ import (
 func Run(ctx *app.Context) {
 	app := Routes(ctx)
 
-	//ask user for a port
-	conf, err := ReadConfig("auth")
-	if err != nil {
-		log.Default()
-	}
-
-	app.Listen(":" + conf.Port)
+	app.Listen(":" + os.Getenv("PORT"))
 }
 
 func Routes(ctx *app.Context) *fiber.App {

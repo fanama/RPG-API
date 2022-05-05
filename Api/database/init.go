@@ -3,6 +3,7 @@ package database
 import (
 	"fmt"
 	"os"
+	"strconv"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/driver/sqlite"
@@ -11,11 +12,13 @@ import (
 )
 
 func (m *Manager) InitMysqlDB() (err error) {
-
-	conf, err := ReadConfig("database")
-
-	if err != nil {
-		return err
+	portdb, _ := strconv.Atoi(os.Getenv("PORTDB"))
+	conf := Configuration{
+		User:     os.Getenv("USERDB"),
+		Password: os.Getenv("PASSWORDDB"),
+		Port:     portdb,
+		DB:       os.Getenv("DATABASE"),
+		Host:     os.Getenv("HOSTDB"),
 	}
 
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local", conf.User, conf.Password, conf.Host, conf.Port, conf.DB)
