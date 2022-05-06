@@ -5,13 +5,10 @@ export function useCard(hero: Hero) {
   const [heroCopy, setHeroCopy] = useState<Hero>(hero);
 
   const change = (e: { target: HTMLInputElement }) => {
-    const h = { ...heroCopy };
+    const id = e.target.id;
+    const value = e.target.value;
 
-    if (e.target) {
-      h[e.target.id] = e.target.value;
-    }
-
-    setHeroCopy(h);
+    setHeroCopy({ ...heroCopy, [id]: value });
   };
 
   return { heroCopy, change };
