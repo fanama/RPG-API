@@ -6,13 +6,20 @@ interface Search {
 }
 
 export function getHero(name: string): Hero {
-  return heroes?.filter((hero) => hero.name == name)[0];
+  if (process.env.MODE == "mock") {
+    return heroes?.filter((hero) => hero.name == name)[0];
+  }
+  return heroes[0];
 }
 
 export function getHeroes(): Hero[] {
-  return heroes;
+  return process.env.MODE == "mock" ? heroes : [];
 }
 
 export function filterHeroes({ name }: Search): Hero[] {
-  return heroes.filter((hero) => hero.name.includes(name));
+  if (process.env.MODE == "mock") {
+    return heroes.filter((hero) => hero.name.includes(name));
+  }
+
+  return [];
 }
