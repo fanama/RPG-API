@@ -36,6 +36,13 @@ func (m Manager) GetHeroes() ([]domain.Hero, error) {
 }
 
 func (m Manager) UpdateHero(hero *domain.Hero, name string) error {
+	heroToUpdate := domain.Hero{}
+
+	m.db.Where("name=?", name).Find(&heroToUpdate)
+	if heroToUpdate.Name == "" {
+		return fmt.Errorf("%v does not exist", name)
+	}
+
 	return m.db.Model(&domain.Hero{}).Where("name=?", name).Updates(&hero).Error
 }
 

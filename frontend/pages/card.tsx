@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import { Card } from "../components/Card";
+import { Hero } from "../domain/hero";
 import { getHero } from "../infra/hero";
 import styles from "../styles/Home.module.css";
 
@@ -15,7 +16,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <Card hero={getHero("goku")} />
+        <Card hero={getHero("goku")} updateHero={(hero: Hero) => {}} />
       </main>
 
       <footer className={styles.footer}>

@@ -1,9 +1,7 @@
 import { Hero } from "../domain/hero";
+import { Search } from "../domain/filter";
 import { heroes } from "./mock/hero";
-
-interface Search {
-  name: string;
-}
+import { getRepoHeroes, updateRepoHero } from "./repo/hero";
 
 export function getHero(name: string): Hero {
   if (process.env.MODE == "mock") {
@@ -12,14 +10,43 @@ export function getHero(name: string): Hero {
   return heroes[0];
 }
 
-export function getHeroes(): Hero[] {
-  return process.env.MODE == "mock" ? heroes : [];
+export async function getInfraHeroes(setHeroes: (heroes: Hero[]) => void) {
+  if (process.env.MODE == "mock") {
+    setHeroes(heroes);
+    return;
+  }
+  setHeroes(await getRepoHeroes());
 }
 
-export function filterHeroes({ name }: Search): Hero[] {
+export async function filterInfraHeroes({ name }: Search): Promise<Hero[]> {
   if (process.env.MODE == "mock") {
+    console.log({ name });
+    if (name == "") {
+      return heroes;
+    }
     return heroes.filter((hero) => hero.name.includes(name));
   }
 
-  return [];
+  const heroesToFilter = await getRepoHeroes();
+
+  if (name == "") {
+    return heroesToFilter;
+  }
+
+  return heroesToFilter.filter((hero) => hero.name.includes(name));
+}
+
+export async function updateInfraHero(
+  name: string,
+  hero: Hero
+): Promise<boolean> {
+  if (process.env.MODE == "mock") {
+    for (const h of heroes) {
+      if (h.name == name) {
+        return true;
+      }
+    }
+  }
+
+  return await updateRepoHero(name, hero);
 }
