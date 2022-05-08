@@ -39,5 +39,9 @@ export function useBoard() {
     setHeroesToDisplay(await filterInfraHeroes(search));
   };
 
-  return { heroesToDisplay, updateHero, filterHeroes };
+  const newHero = async (hero: Hero) => {
+    setHeroes([...heroes, hero]);
+  };
+
+  return { heroesToDisplay, updateHero, filterHeroes, newHero };
 }
