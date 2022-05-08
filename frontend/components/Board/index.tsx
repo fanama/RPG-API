@@ -1,45 +1,42 @@
-import * as React from 'react'
-import {useEffect,useState,useContext} from 'react'
-import { BoardContext } from '../../context/BoardContext'
-import { Card } from '../Card'
-import { Creator } from '../Creator'
+import { Card } from "../Card";
+import { CreateHero } from "../Card/CreateHero";
+import style from "./style.module.scss";
+import { useBoard } from "./useBoard";
+import { useFilter } from "./useFilter";
 
-import {postier} from './postier'
+interface Props {}
 
-import "./style.scss"
+export function Board({}: Props) {
+  const { heroesToDisplay, updateHero, filterHeroes, createHero } = useBoard();
+  const { searchField, updateField } = useFilter();
 
-interface Proplist {
-    heroes: any[]
-}
+  return (
+    <div className={style.display}>
+      <CreateHero createHero={createHero} />
+      <div className={style.container}>
+        <h2>
+          Board
+          <div>
+            <input
+              id="name"
+              value={searchField.name}
+              placeholder="name"
+              onChange={updateField}
+            />
+            <button
+              onClick={() => {
+                filterHeroes(searchField);
+              }}
+            >
+              filter
+            </button>
+          </div>
+        </h2>
 
-export function Board() {
-
-
-    const {refresh} = useContext(BoardContext)
-    const [heroes, setHeroes] = useState<any[]>([])
-
-    useEffect(() => {
-        postier.getHeroes(setHeroes)
-    }, [refresh])
-
-    return (
-        <div className="Board">
-            <Creator />
-            <Battlefield heroes={heroes} />
-        </div>
-    )
-}
-
-function Battlefield({heroes}:Proplist) {
-
-    useEffect(() => {
-        console.log(heroes)
-        
-    }, [heroes])
-
-    const render = heroes[0]?heroes.map(h=><Card hero={h} />):null;
-
-    return <div className="Battlefield">
-        {render}
+        {heroesToDisplay.map((hero) => {
+          return <Card key={hero.id} hero={hero} updateHero={updateHero} />;
+        })}
+      </div>
     </div>
+  );
 }

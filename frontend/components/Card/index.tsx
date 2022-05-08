@@ -1,50 +1,30 @@
-import * as React from 'react'
+import { useState } from "react";
+import { createContext } from "react";
+import { Hero } from "../../domain/hero";
+import { DisplayHero } from "./DisplayHero";
+import { UpdateHero } from "./UpdateHero";
 
-import "./style.scss"
+interface Props {
+  hero: Hero;
+  updateHero: (hero: Hero) => void;
+}
 
-export function Card({hero}) {
+interface CardContextType {
+  hero: Hero;
+  updateHero: (hero: Hero) => void;
+  setModify: (modify: boolean) => void;
+}
 
+export const CardContext = createContext<CardContextType>(
+  {} as CardContextType
+);
 
-    return (
-        <div className='Card'>
+export function Card({ hero, updateHero }: Props) {
+  const [modify, setModify] = useState<boolean>(false);
 
-            <div className="headder">
-                <h3>Name : {hero.Name}</h3>
-            
-                <div className="case">
-                    PV : <input width="50%"/>/{hero.Lifepoint} 
-                </div>
-                <div className="case">
-                    Race : {hero.Race} 
-                </div> 
-            </div>
-            
-
-           <div className="stat">
-                <div className="case">
-                    force : {hero.Force}  mod :  { Math.trunc((hero.Force-10)/2)} 
-                </div> 
-                <div className="case">
-                    vitesse : {hero.Vitesse}  mod :  {Math.trunc((hero.Vitesse-10)/2)}     
-                </div> 
-                <div className="case">
-                    constitution : {hero.Constitution}  mod :  {Math.trunc((hero.Constitution-10)/2)} 
-                </div> 
-                <div className="case">magie : {hero.Magie} </div> 
-                <div className="case">
-                    contrôle :<input/> /{hero.Controle} 
-                </div> 
-                <div className="case">
-                    sagesse : {hero.Sagesse}  mod :  {Math.trunc((hero.Sagesse-10)/2)} 
-                </div> 
-                <div className="case">
-                    intel : {hero.Inteligence}  mod :  {Math.trunc((hero.Sagesse-10)/2)} 
-                </div> 
-                <div className="case">
-                    charisme : {hero.Charisme} mod :  {Math.trunc((hero.Charisme-10)/2)}  
-                </div> 
-           </div>
-
-        </div>
-    )
+  return (
+    <CardContext.Provider value={{ setModify, hero, updateHero }}>
+      {!modify ? <DisplayHero /> : <UpdateHero />}{" "}
+    </CardContext.Provider>
+  );
 }
