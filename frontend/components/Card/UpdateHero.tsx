@@ -1,28 +1,21 @@
-import { Hero } from "../../domain/hero";
+import { useContext } from "react";
+import { CardContext } from ".";
 import style from "./style.module.scss";
 import { useCard } from "./useCard";
 
-interface Props {
-  createHero: (hero: Hero) => void;
-}
-
-export function CreateHero({ createHero }: Props) {
-  const { heroToUpdate, change } = useCard({} as Hero);
+export function UpdateHero() {
+  const { hero, updateHero, setModify } = useContext(CardContext);
+  const { heroToUpdate, change } = useCard(hero);
 
   return (
-    <div className={[style.Card, style.Creator].join(" ")}>
+    <div className={style.Card}>
       <div className={style.headder}>
-        <h3>
-          Name <input value={heroToUpdate.name} id="name" onChange={change} />
-        </h3>
+        <h3>Name {hero.name}</h3>
         <label>PV </label>{" "}
-        <input
-          value={heroToUpdate.lifepoint}
-          id="lifepoint"
-          onChange={change}
-        />
-        <label>Race </label>{" "}
-        <input value={heroToUpdate.race} id="race" onChange={change} />
+        <label>
+          <input defaultValue={heroToUpdate.lifepoint} />/{hero.lifepoint}
+        </label>
+        <label>Race </label> <label>{heroToUpdate.race}</label>
       </div>
 
       <div className={style.stat}>
@@ -45,7 +38,13 @@ export function CreateHero({ createHero }: Props) {
         <label>magie </label>{" "}
         <input id="magie" value={heroToUpdate.magie} onChange={change} />
         <label>contrôle </label>
-        <input id="controle" value={heroToUpdate.controle} onChange={change} />
+        <label>
+          <input
+            id="controle"
+            value={heroToUpdate.controle}
+            onChange={change}
+          />
+        </label>
         <label>sagesse </label>
         <input id="sagesse" value={heroToUpdate.sagesse} onChange={change} />
         <label>mod </label>
@@ -65,10 +64,11 @@ export function CreateHero({ createHero }: Props) {
       </div>
       <button
         onClick={() => {
-          createHero(heroToUpdate);
+          updateHero(heroToUpdate);
+          setModify(false);
         }}
       >
-        create hero
+        Save
       </button>
     </div>
   );

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Search } from "../../domain/filter";
 import { Hero } from "../../domain/hero";
 import {
+  createInfraHero,
   filterInfraHeroes,
   getInfraHeroes,
   updateInfraHero,
@@ -39,9 +40,19 @@ export function useBoard() {
     setHeroesToDisplay(await filterInfraHeroes(search));
   };
 
-  const newHero = async (hero: Hero) => {
+  const createHero = async (hero: Hero) => {
+    for (const h of heroes) {
+      if (h.name == hero.name || hero.name == "" || !hero.name) {
+        return;
+      }
+    }
+
+    if (!(await createInfraHero(hero))) {
+      return;
+    }
+
     setHeroes([...heroes, hero]);
   };
 
-  return { heroesToDisplay, updateHero, filterHeroes, newHero };
+  return { heroesToDisplay, updateHero, filterHeroes, createHero };
 }

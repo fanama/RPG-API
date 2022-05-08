@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { createContext } from "react";
 import { Hero } from "../../domain/hero";
-import { CreateHero } from "./CreateHero";
 import { DisplayHero } from "./DisplayHero";
+import { UpdateHero } from "./UpdateHero";
 
 interface Props {
   hero: Hero;
@@ -24,7 +24,7 @@ export function Card({ hero, updateHero }: Props) {
 
   return (
     <CardContext.Provider value={{ setModify, hero, updateHero }}>
-      {!modify ? <DisplayHero /> : <CreateHero />}{" "}
+      {!modify ? <DisplayHero /> : <UpdateHero />}{" "}
     </CardContext.Provider>
   );
 }

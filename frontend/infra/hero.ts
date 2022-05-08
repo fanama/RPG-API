@@ -20,7 +20,6 @@ export async function getInfraHeroes(setHeroes: (heroes: Hero[]) => void) {
 
 export async function filterInfraHeroes({ name }: Search): Promise<Hero[]> {
   if (process.env.MODE == "mock") {
-    console.log({ name });
     if (name == "") {
       return heroes;
     }
@@ -49,4 +48,9 @@ export async function updateInfraHero(
   }
 
   return await updateRepoHero(name, hero);
+}
+
+export async function createInfraHero(hero: Hero): Promise<boolean> {
+  console.log({ hero });
+  return true;
 }
