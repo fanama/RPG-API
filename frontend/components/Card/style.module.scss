@@ -15,7 +15,8 @@
       border: none;
       color: white;
       text-align: center;
-      width: 2em;
+      min-width: 2em;
+      max-width: 5em;
     }
     margin: 1em;
     background-color: rgba($color: #fff, $alpha: 0.5);
@@ -37,6 +38,7 @@
 
 .Creator {
   max-height: 70vh;
+  padding: 1em;
   .headder input,
   .stat input {
     border-bottom: 1px solid white;

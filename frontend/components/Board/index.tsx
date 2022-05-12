@@ -1,5 +1,6 @@
 import { Card } from "../Card";
 import { CreateHero } from "../Card/CreateHero";
+import { Dice } from "../Dice";
 import style from "./style.module.scss";
 import { useBoard } from "./useBoard";
 import { useFilter } from "./useFilter";
@@ -16,7 +17,7 @@ export function Board({}: Props) {
       <div className={style.container}>
         <h2>
           Board
-          <div>
+          <div className={style.line}>
             <input
               id="name"
               value={searchField.name}
@@ -30,6 +31,7 @@ export function Board({}: Props) {
             >
               filter
             </button>
+            <Dice />
           </div>
         </h2>
 
